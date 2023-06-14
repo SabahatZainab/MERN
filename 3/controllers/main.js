@@ -1,7 +1,8 @@
 //export util in controller
 const utils = require('../utils'); //not required to require index
 exports.health = function(req,res){
-    res.send('Get API, Server is Healthy!!!!')
+    const data = utils.heath();
+    res.send(data)
 }
 exports.appInfo = function(req,res){
     res.send('This is a basic App');

@@ -1,16 +1,22 @@
 //express
 const express = require('express');
-const bodyParser = require('./middlewares/bodyParser')
-
-const controllers = require('./controllers/main');
+const bodyParser = require('./middlewares/bodyParser');
+const morgan = require('./middlewares/morgan');
+const route = require('./routes');
+const user = require('./routes/user');
 const app = express();
 
-app.use(bodyParser.parser); //for parsing application/json
+//two methods to write
+// app.use(morgan);
+app.use(morgan.morgan);
 
-app.get('/',controllers.health); 
-app.get('/info',controllers.appInfo); //localhost:3000/info
-app.get('/sum',controllers.sum);
- //14:13 3.2 video
+
+app.use(bodyParser.parser); //for parsing application/json
+app.use('/',route); //add route using express route //sab routes main ma use karo '/' here
+app.use('/user',user);
+
+
+
 
 
 app.listen(3000,(err)=>{
